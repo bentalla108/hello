@@ -1,31 +1,51 @@
-import Header from "./Header";
-import Footer from "./Footer";
-import { useState } from "react";
+import { useState } from "react"
+import {FaTrashAlt} from "react-icons/fa"
 
-
-import React from 'react'
-
-function Content() {
-  const [count , setCount]= useState(0);
-  const clickMe = () => {
-    console.log(`Before : ${count}`);
-    setCount(c => {
-      console.log(`Inside Callback : ${c}`);
-      return c + 1;
-    });
-  };
+const Content = () => {
   
+  const [items , setItems ] = useState([
+    {
+      id: 1,
+      checked: true,
+      item: "One half pound bag of Cocoa Covered Almonds Unsalted"
+  },
+  {
+      id: 2,
+      checked: false,
+      item: "Item 2"
+  },
+  {
+      id: 3,
+      checked: false,
+      item: "Item 3"
+  }
+
+  ])
+
   return (
-    
-    <div>
-        {console.log(`After render : ${count}`)}
+      <main>
+      <ul>
+        {
+          items.map((item)=>(
+            <li className="item" key={item.id}>
+            <input
+            type="checkbox"
+            checked={item.checked}>
 
-     <Header />
-      <p>{count} : {} </p>
-      <button onClick={clickMe}> click me</button>
+            </input>
+            <label>{item.item}</label>
+            <FaTrashAlt 
+              role ="button"
+              tabIndex="0"
+            />
 
-     <Footer />
-    </div>
+            </li>
+          ))
+
+        }
+      </ul>
+          
+      </main>
   )
 }
 
