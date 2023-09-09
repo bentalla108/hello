@@ -7,20 +7,21 @@ import React from 'react'
 
 function Content() {
   const [count , setCount]= useState(0);
-  const [multiple , setMultiple]  = useState(1);
-  const clickMe =  ()=>{
+  const clickMe = () => {
     console.log(`Before : ${count}`);
-    setCount(count +1)
-    setMultiple(count *2);
-    console.log(`After : ${count}`);
+    setCount(c => {
+      console.log(`Inside Callback : ${c}`);
+      return c + 1;
+    });
   };
+  
   return (
     
     <div>
         {console.log(`After render : ${count}`)}
 
      <Header />
-      <p>{count} : {multiple} </p>
+      <p>{count} : {} </p>
       <button onClick={clickMe}> click me</button>
 
      <Footer />
